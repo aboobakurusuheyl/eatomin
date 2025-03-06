@@ -23,6 +23,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Modules\\": "Modules/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
@@ -33,9 +34,17 @@
         }
     },
     "scripts": {
+        "pre-update-cmd": [
+            "@php -r \"@rename('Modules', 'Modules_');\""
+        ],
+        "pre-install-cmd": [
+            "@php -r \"@rename('Modules', 'Modules_');\""
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php -r \"@rename('Modules_', 'Modules');\"",
+		    "@php artisan package:discover"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
