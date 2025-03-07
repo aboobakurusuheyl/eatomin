@@ -2,5 +2,7 @@
     "Fleet": true,
     "Vendors": true,
     "Admin": true,
+    "Finance": true,
+    "Operations": true,
     "Products": true
 }
