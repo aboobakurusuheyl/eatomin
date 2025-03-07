@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_profile_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('profile_id')->constrained('profiles')->cascadeOnDelete();
             $table->string('name');
             $table->string('address');
             $table->float('latitude')->default(0);

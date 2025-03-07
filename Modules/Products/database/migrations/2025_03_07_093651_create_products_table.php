@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('product_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('image_url')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('description')->nullable();
             $table->float('price');

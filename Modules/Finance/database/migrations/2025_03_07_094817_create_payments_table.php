@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('payee_profile_id')->constrained('profiles')->cascadeOnDelete();
             $table->enum('payment_method', ['credit_card', 'paypal', 'cash']);
             $table->enum('payment_status', ['pending', 'completed', 'failed']);
             $table->json('transaction_details');

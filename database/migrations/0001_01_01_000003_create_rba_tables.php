@@ -29,7 +29,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('permission_role', function (Blueprint $table) {
+        Schema::create('role_permission', function (Blueprint $table) {
             $table->id();
             $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
             $table->foreignId('permission_id')->constrained('permissions')->cascadeOnDelete();
@@ -45,7 +45,7 @@ return new class extends Migration
 
         Schema::create('temporary_permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')->constrained('user_profiles')->cascadeOnDelete();
+            $table->foreignId('profile_id')->constrained('profiles')->cascadeOnDelete();
             $table->foreignId('permission_id')->constrained('permissions')->cascadeOnDelete();
             $table->boolean('is_granted');
             $table->timestamp('start_date');
